@@ -1,0 +1,122 @@
+@use "../components/setups.scss" as setup;
+
+.root {
+  width: 100%;
+  height: 100vh;
+  background: var(--color-black);
+
+  header,
+  footer {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    z-index: 5;
+    text-align: center;
+  }
+  header {
+    top: 1rem;
+    font-size: 3rem;
+
+    @include setup.mq("sm") {
+      top: 2rem;
+      font-size: 5rem;
+    }
+  }
+  footer {
+    bottom: 1rem;
+    font-size: 0.75rem;
+
+    @include setup.mq("sm") {
+      font-size: 1rem;
+    }
+  }
+
+  main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.booth {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  &::before {
+    width: 100%;
+    height: calc(20% + 6rem);
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 15%);
+    border-radius: 12px;
+    box-shadow: inset 0 -4.5rem 0 5rem #0e0e0e;
+
+    @include setup.mq("sm") {
+      width: calc(90% + 10rem);
+    }
+  }
+}
+
+.preview {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  video {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
+  img {
+    width: 100%;
+    aspect-ratio: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  @include setup.mq("sm") {
+    img,
+    video {
+      width: 400px;
+      height: 400px;
+    }
+  }
+}
+
+.result {
+  display: grid;
+  grid-template-areas:
+    "photocard photocard photocard"
+    "back download download";
+  column-gap: 1rem;
+  row-gap: 3rem;
+
+  & > div {
+    grid-area: photocard;
+  }
+
+  & img {
+    border-radius: 6px;
+  }
+
+  & > button {
+    &:nth-of-type(1) {
+      grid-area: back;
+    }
+    &:nth-of-type(2) {
+      grid-area: download;
+    }
+  }
+}

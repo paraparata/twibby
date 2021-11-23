@@ -1,0 +1,43 @@
+// Colors
+$color-primary: #cad2c5;
+$color-secondary: #f7d08a;
+$color-accent-1: #f79f79;
+$color-accent-2: #87b6a7;
+$color-accent-3: #5b5941;
+$color-accent-4: #60693a;
+
+$color-shadow: rgba(20, 17, 20, 0.3);
+$color-luminocity: #98997b56;
+$color-overlay: #010201de;
+
+$color-base-1: #383638;
+$color-base-2: #201e1e;
+$color-base-3: #1b121b;
+$color-base-4: #141114;
+$color-base-5: #121b12;
+
+$color-white: #ffffff;
+$color-black: #000000;
+
+// Media Query
+$breakpoints: (
+  "sm": "(min-width: 640px)",
+  "md": "(min-width: 768px)",
+  "lg": "(min-width: 1024px)",
+  "xl": "(min-width: 1024px)",
+  "2xl": "(min-width: 1536px)",
+);
+
+@function mq-min-width($screen) {
+  @each $name, $breakpoint in $breakpoints {
+    @if $name == $screen {
+      @return $breakpoint;
+    }
+  }
+}
+
+@mixin mq($screen) {
+  @media #{mq-min-width($screen)} {
+    @content;
+  }
+}
